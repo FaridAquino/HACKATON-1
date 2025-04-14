@@ -29,4 +29,14 @@ public class calculadoraController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errror interno inesperado" +e.getMessage());
         }
     }
+
+    @GetMapping("/resta/{a}/{b}")
+    public ResponseEntity<?> resta(@PathVariable Long a, @PathVariable Long b){
+        try {
+            Long result= service.resta(a,b);
+            return ResponseEntity.ok(result.toString());
+        }   catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("ERROR: " + e.getMessage());
+        }
+    }
 }

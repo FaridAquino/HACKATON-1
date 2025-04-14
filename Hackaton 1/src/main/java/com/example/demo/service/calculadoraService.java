@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exceptions.huanaException;
 import com.example.demo.repository.calculadoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class calculadoraService {
     public Double divide(Long a, Long b){
 
         if (a==null || b== null){
-            throw new IllegalArgumentException(" a y b no pueden ser iguales");
+            throw new IllegalArgumentException(" a y b no pueden ser nulos");
         }
 
         if (b==0){
@@ -22,4 +23,20 @@ public class calculadoraService {
         return a.doubleValue()/b.doubleValue();
 
     }
+
+    public Long resta(Long a, Long b){
+
+        if (a==b){
+            throw new huanaException(" a y b no pueden ser iguales");
+        }
+
+        if (b>a){
+            throw new huanaException(" b no puede ser mayor que a");
+        }
+
+        return a-b;
+
+    }
+
+
 }
